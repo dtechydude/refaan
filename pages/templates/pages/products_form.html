@@ -1,0 +1,21 @@
+<form method="POST">
+        {% csrf_token %}
+        <!--<fieldset class="form-group">-->
+
+            <div>
+                 <legend class="border-bottom mb-4 row justify-content-center">Profile Update Form</legend>
+
+                {{form.as_p}}
+            </div>
+               <div class="col">
+
+
+            </div>
+           </div>
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Update</button>
+        </div>
+        </div>
+
+    </form>

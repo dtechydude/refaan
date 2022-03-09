@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block navbar %}
+<nav class="nav-menu d-none d-lg-block">
+                <ul>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#team">Team</a></li>
+          <li class="active"><a href="{% url 'jobs-home' %}">Jobs Page</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li class="drop-down"><a href="">My Account</a>
+            <ul>
+              <li><a href="{% url 'profile' %}">Profile</a></li>
+              <li class=""><a href="{% url 'post-create' %}">Create Job Post</a>
+                <li><a href="{% url 'member-list' %}">Members Directory</a></li>
+              <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+
+          {% else %}
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#team">Team</a></li>
+          <li class="active"><a href="{% url 'jobs-home' %}">Jobs Page</a></li>
+          <li><a href="{% url 'register' %}">Register</a></li>
+          <li class="drop-down"><a href="">Members</a>
+            <ul>
+              <li><a href="{% url 'login' %}">Login</a></li>
+              <li class="drop-down"><a href="#">Members Page</a>
+                <ul>
+                  <li><a href="#">Members Jobs</a></li>
+                  <li><a href="{% url 'member-list' %}">Members Directory</a></li>
+                </ul>
+              </li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Membership Terms</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact</a></li>
+
+          {% endif %}
+
+        </ul>
+
+      </nav><!-- .nav-menu -->
+{% endblock navbar%}
+
+
+{% block hero %}
+
+{% endblock hero %}
+{% block featured %}
+
+{% endblock featured %}
+
+{% block about %}
+
+{% endblock about %}
+
+{% block skills %}
+
+
+{% endblock skills %}
+
+{% block counter %}
+
+{% endblock counter %}
+{% block clients %}
+
+{% endblock clients %}
+
+{% block services %}
+
+    <hr class="pb-4">
+    <div class="container d-flex pt-4  bd-highlight ">
+    <div class="container d-flex pt-4 bd-highlight ">
+    <div class="container d-flex pt-4 bd-highlight ">
+    <div class="container d-flex pt-4 bd-highlight  ">
+
+
+      <div class="container">
+          <div style="padding:auto; padding:auto;"> <!--added by olu-->
+           <div style="padding-left:10px;"> <h4>Current Job Details of our members </h4>
+               <p>Each of our members recent jobs are displayed here Click on the name to see all jobs of the member or the title to see details</p>
+           <hr>
+           </div>
+
+          </div>
+ {% for post in posts %}
+
+<div style="width:100%;">
+    <div class="card" style="width: 18rem; height:18rem; float:left; margin:10px;">
+  <img class="rounded-circle article-img p-3"  href="#" src="{{ post.author.profile.image.url }}" style="width:70px; height:auto; " class="card-img-top" alt="...">
+        <div class="card-body">
+            <h6 class="card-title"><a class="mr-2" style="color:#ff6600;" href="{% url 'user-posts' post.author.username %}">{{ post.author.first_name }}</a></h6>
+            <h6><a class="article-title" href="{% url 'post-detail' post.slug %}" ><span style="color:#ff6600;">Job Title:</span> {{ post.title }}</a></h6><small></small>
+
+            <p class="card-text">{{ post.content|safe|truncatewords:"10"|linebreaks }}</p>
+    <a href="{% url 'post-detail' post.slug %}" class="btn btn-secondary">read more</a>
+
+  </div>
+    </div>
+  </div>
+          {% endfor %}
+
+
+<div class= "container" style="float:left;">
+          {% if is_paginated %}
+            {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info btn-sm mb-4" href="?page=1">First</a>
+            <a class="btn btn-outline-info btn-sm mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif%}
+            {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <a class="btn btn-info btn-sm mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a class="btn btn-outline-info btn-sm mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <a class="btn btn-outline-info btn-sm mb-4" href="?page={{ page_obj.next_page_number}}">Next</a>
+            <a class="btn btn-outline-info btn-sm mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif%}
+
+            {% endif %}
+</div>
+
+          </div>  <!--added by olu-->
+
+          </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+{% endblock services%}
+
+{% block testimonials%}
+
+{% endblock testimonials %}
+
+{% block portfolio %}
+
+{% endblock portfolio %}
+
+{% block team %}
+
+{% endblock team %}
+
+{% block faq %}
+
+{% endblock faq%}
+
+{% block pricing %}
+
+{% endblock pricing %}
+
+{% block contact %}
+
+{% endblock contact %}
+
+{% block footer %}
+How to navigate the members job
+{% endblock footer%}

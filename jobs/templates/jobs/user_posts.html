@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block navbar %}
+<nav class="nav-menu d-none d-lg-block">
+      <ul>
+          {% if user.is_authenticated %}
+          <li><i class="fa fa-fw fa-user"></i> Hello! {{ user.username}}</li>
+          <li><a href="{% url 'profile' %}">Dashboard</a></li>
+          <li><a href="{% url 'post-create' %}">Create Job Post</a></li>
+          <li><a href="{% url 'jobs-home' %}">Members Job</a></li>
+           <li><a href="{% url 'member-list' %}">Members Directory</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+
+            </ul>
+
+          {% else %}
+          <li class="active"><a href="{% url 'home' %}">Home</a></li>
+        <li class="drop-down"><a href="">About Us</a>
+          <ul>
+            <li><a href="#about">Who We Are</a></li>
+             <li><a href="#services">Membership</a></li>
+            <li><a href="#team">Our Team</a></li>
+             <li><a href="#faq">FAQ</a></li>
+            <li><a href="#">Membership Terms</a></li>
+             <li><a href="{% url 'member-list' %}">Members Directory</a></li>
+              </li>
+          </ul>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="{% url 'jobs-home' %}">Jobs Page</a></li>
+          <li><a href="{% url 'register' %}">Join Us</a></li>
+         <li><a href="{% url 'login' %}">Login</a></li>
+
+          </li>
+          <li><a href="#contact">Contact</a></li>
+
+          {% endif %}
+
+        </ul>
+      </nav><!-- .nav-menu -->
+{% endblock navbar%}
+
+
+{% block hero %}
+
+{% endblock hero %}
+{% block featured %}
+
+{% endblock featured %}
+
+{% block about %}
+
+{% endblock about %}
+
+{% block skills %}
+
+
+{% endblock skills %}
+
+{% block counter %}
+
+{% endblock counter %}
+{% block clients %}
+
+{% endblock clients %}
+
+{% block services %}
+
+    <hr class="pb-4">
+    <div class="container d-flex pt-4  bd-highlight ">
+    <div class="container d-flex pt-4 bd-highlight ">
+    <div class="container d-flex pt-4 bd-highlight ">
+    <div class="container d-flex pt-4 bd-highlight  ">
+
+
+
+      <div class="container">
+          <div style="padding:auto; padding:auto;"> <!--added by olu-->
+           <div style="padding-left:10px;"> <h4>Job Details list  of REFAAN'S member </h4>
+
+           <hr>
+           </div>
+          <h5 class="mb-3">Jobs Done By {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h5>
+
+        {% for post in posts %}
+          <article class="media content-section" style="padding-bottom:15px;">
+            <img class="rounded-circle article-img"  href="#" src="{{ post.author.profile.image.url }}" style="width:70px; height:auto;">
+            <div class="media-body">
+              <div class="article metadata">
+                <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+                <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+
+              </div>
+              <div>
+                 <h5><a class="article-title" href="{% url 'post-detail' post.slug %}" >{{ post.title }}{{post.category}}</a></h5>
+              <p class="article-content">{{ post.content|safe }}</p>
+            </div>
+            </div>
+          </article>
+
+           {% endfor %}
+
+          {% if is_paginated %}
+            {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif%}
+            {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number}}">Next</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif%}
+
+            {% endif %}
+
+
+          </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock services%}
+
+{% block testimonials%}
+
+{% endblock testimonials %}
+
+{% block portfolio %}
+
+{% endblock portfolio %}
+
+{% block team %}
+
+{% endblock team %}
+
+{% block faq %}
+
+{% endblock faq%}
+
+{% block pricing %}
+
+{% endblock pricing %}
+
+{% block contact %}
+
+{% endblock contact %}
+
+{% block footer %}
+How to navigate the members job
+{% endblock footer%}
+
+

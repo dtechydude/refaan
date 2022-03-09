@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block navbar %}
+<nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="#">Register</a></li>
+          <li class="drop-down"><a href="{% url 'login' %}">Login</a>
+          </li>
+        </ul>
+
+      </nav><!-- .nav-menu -->
+{% endblock navbar%}
+
+
+{% block hero %}
+
+{% endblock hero %}
+{% block featured %}
+
+{% endblock featured %}
+
+{% block about %}
+
+{% endblock about %}
+
+{% block skills %}
+
+{% endblock skills %}
+
+{% block counter %}
+
+{% endblock counter %}
+{% block clients %}
+
+{% endblock clients %}
+
+{% block services %}
+
+
+
+    <hr class="pb-4">
+    <div class="container d-flex pt-4  bd-highlight ">
+    <div class="container d-flex pt-4 bd-highlight ">
+    <div class="container d-flex pt-4 bd-highlight ">
+    <div class="container d-flex pt-4 bd-highlight  ">
+        <div>Members Profile Page
+
+
+        <div class="container d-flex p-2 bd-highlight ">
+        <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+        <h6 class="account-heading"><small>Username:</small> {{ user.username }}</h6>
+        <p style="color:red;">Note: You cannnot edit your username and email</p>
+            <div>
+            <button class="btn btn-outline-info" ><a href="{% url 'password-change'%}">Change Password</a></button>
+        </div>
+        </div>
+        </div>
+    </div>
+
+      <div class="container">
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!--<fieldset class="form-group">-->
+
+           <div class="container" >
+                <div >
+                    <h4>Your Current Information</h4>
+                    <strong>First Name: </strong>{{user.first_name}}<br/>
+                    <strong>Last Name: </strong>{{user.last_name}}<br/>
+                     <strong>Gender: - </strong>{{user.profile.gender}} <br />
+                 <strong>Country: - </strong>{{user.profile.country}}<br/>
+                   <strong>Username: - </strong>   {{user.username}}<br />
+                    <strong>Email: - </strong>{{user.email}}<br/>
+                </div>
+           <div> </div>
+            <div>
+                 <legend class="border-bottom mb-4 row justify-content-center">Profile Update Form</legend>
+                {{ u_form|crispy }}
+                {{p_form|crispy}}
+            </div>
+               <div class="col">
+
+
+            </div>
+           </div>
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Update</button>
+        </div>
+        </div>
+
+    </form>
+
+
+          </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock services%}
+
+{% block testimonials%}
+
+{% endblock testimonials %}
+
+{% block portfolio %}
+
+{% endblock portfolio %}
+
+{% block team %}
+
+{% endblock team %}
+
+{% block faq %}
+
+{% endblock faq%}
+
+{% block pricing %}
+
+{% endblock pricing %}
+
+{% block contact %}
+
+{% endblock contact %}

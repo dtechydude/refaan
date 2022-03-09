@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block featured %}
+<div class="container">
+<form method="POST" id="personForm" data-lgas-url="{% url 'ajax_load_lgas' %}" novalidate>
+    {% csrf_token %}
+    <table>
+        <!--{{ form.as_table }}-->
+    </table>
+    {% for field in form.visible_fields %}
+    <div class="form-group">
+        <label for="">{{ field.label }}</label>
+        {{ field|add_class:'form-control' }}
+        {% for error in field.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+    </div>
+    {% endfor%}
+    <button class="btn btn-success" type="submit">Save</button>
+</form>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_state").change(function () {
+        var url = $("#personForm").attr("data-lgas-url");
+        var stateId = $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {
+                'state': stateId
+            },
+            success: function (data) {
+                $("#id_lga").html(data);
+             }
+
+           });
+
+    });
+</script>
+{% endblock featured %}

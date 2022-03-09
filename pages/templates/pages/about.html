@@ -1,0 +1,390 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>REFAAN</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: BizLand - v1.2.0
+  * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
+    <div class="container d-flex">
+      <div class="contact-info mr-auto">
+        <i class="icofont-envelope"></i> <a href="mailto:contact@refaan.org">contact@refaan.org</a>
+        <i class="icofont-phone"></i> 08133132160
+      </div>
+      <div class="social-links">
+        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
+        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+        <a href="#" class="skype"><i class="icofont-skype"></i></a>
+        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo mr-auto"><a href="{% url 'home' %}"><img src="{% static 'assets/img/apple-touch-icon.png' %}"><img src="{% static 'assets/img/refaan_logo.png' %}"><span></span></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt=""></a>-->
+{% block navbar%}
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          {% if user.is_authenticated %}
+          <li class="active"><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Membership</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="{% url 'jobs-home' %}">Jobs Page</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li class="drop-down"><a href="">My Account</a>
+            <ul>
+              <li><a href="{% url 'profile' %}">Profile</a></li>
+              <li class=""><a href="{% url 'post-create' %}">Create Job Post</a>
+                <li><a href="{% url 'member-list' %}">Members Directory</a></li>
+              <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+
+          {% else %}
+          <li class="active"><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Membership</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="{% url 'jobs-home' %}">Jobs Page</a></li>
+          <li><a href="{% url 'register' %}">Register</a></li>
+          <li class="drop-down"><a href="">Members</a>
+            <ul>
+              <li><a href="{% url 'login' %}">Login</a></li>
+              <li class="drop-down"><a href="#">Members Page</a>
+                <ul>
+                  <li><a href="#">Members Jobs</a></li>
+                  <li><a href="{% url 'member-list' %}">Members Directory</a></li>
+                </ul>
+              </li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Membership Terms</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact</a></li>
+
+          {% endif %}
+
+        </ul>
+      </nav><!-- .nav-menu -->
+      {% endblock navbar %}
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main" data-aos="fade-up">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <!-- <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Inner Page</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Inner Page</li>
+          </ol>
+        </div>
+
+      </div>
+    </section> End Breadcrumbs -->   <!--dont include breadcrumb on this page-->
+
+
+  </main><!-- End #main -->
+
+{% block hero %}
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container" data-aos="zoom-out" data-aos-delay="100">
+      <h1>About <span>Us</spa>
+      </h1>
+      <h2>Complete the form below for further enquiries.</h2>
+      <div class="d-flex">
+       <!-- <a href="#about" class="btn-get-started scrollto">Get Started</a>
+        <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox btn-watch-video" data-vbtype="video" data-autoplay="true"> Watch Video <i class="icofont-play-alt-2"></i></a>
+      --></div>
+    </div>
+  </section><!-- End Hero -->
+  {% endblock hero %}
+
+  <main id="main">
+
+
+    {% block featured %}
+
+    {% endblock featured %}
+
+    {% block about%}
+      <!-- ======= About Section ======= -->
+    <section id="about" class="about section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+
+          <h3>Find Out More <span>About Us</span></h3>
+          <p>OUR VALUES: Excellent, Labor and Integrity, (ELI)</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6" data-aos="zoom-out" data-aos-delay="100">
+            <img src="{% static 'assets/img/about.jpg' %}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <h3>Elevating the well-being of artisans, enhancing customers’ satisfaction and developing human capital through mind re-orientation and free transfer of skills.</h3>
+            <p class="font-italic">
+              OUR VISION: To be the leading, most impactful and beneficial association in Nigeria
+            </p>
+            <ul>
+              <li>
+                <i class="bx bx-store-alt"></i>
+                <div>
+                  <h5>Philosopy</h5>
+                  <p>Inspiration to knowledge, how-to and giving.</p>
+                </div>
+              </li>
+              <li>
+                <i class="bx bx-images"></i>
+                <div>
+                  <h5>Principles</h5>
+                  <p>Harmony, Discipline and Hard Work</p>
+                </div>
+              </li>
+            </ul>
+            <p>
+              The vision of REFAAN is driven by a genuine passion to develop and put in place,
+              a system consisting of all professional artisans in the finishing services sub-sector, both Nigerians and foreigners alike, with a view to training and re-training members transferring of skills to unskilled youths and delivering excellent services to clients at lower cost.
+
+            </p>
+          </div>
+        </div>
+
+      </div>
+        <section id="about" class="about section-bg">
+      <div class="container" data-aos="fade-up">
+        <div class="about section-bg" >
+            <div class="row">
+          <div class="col-lg-6" data-aos="zoom-out" data-aos-delay="100" style="text-align:justify;">
+              <h4>Read this first</h4>
+              <p>At no given time in the annals of Nigeria history has the finishing sub-sector
+              in the building construction industry (Real Estate finishing Sub-Sector) experienced
+              tremendous boost as it is today. With the COVID-19 pandemic, notwithstanding, the
+              sector continues to experience tremendous growth. As we continue to witness
+              advancement in technology, attention has now shifted from physical economy
+              to virtual economy. Different landmark achievements are being recorded in the Real Estate
+                  Sector with its attendant growth in the finishing services areas.</p>
+              <p>The finishing services sector in Nigeria is so huge and largely untapped. This had necessitated
+              the influx of our neighboring west African brothers to come to Nigeria for greener pasture.
+              Ironically, a lot of Nigerian youths have been traveling abroad in search of these greener
+                  pastures which are right under their noses, the challenges however are not far-fetched.</p>
+                <p>These include, Lack of an organized system, lack of awareness and lack of loving support/empowerment.
+              Other challenges with respect to excellent job delivery have to do with some unscrupulous artisans
+              absconding with client’s funds when they have been mobilized and, on the flip side,
+              some clients not making final payment when their jobs have been satisfactorily delivered.
+              This is where REFAAN comes into the picture to address these issues and provide the platform for the robust
+                    client’s relationship and trust as well as growth, development and unfoldment of the Nigerian youths.</p>
+            REFAAN (Real Estate Finishing Artisans Association of Nigeria) is a divinely inspired and duly registered organization in Nigeria with the mandate to liberate and empower the Nigerian youths for economic and financial freedom
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <h3>Elevating the well-being of artisans, enhancing customers’ satisfaction and developing human capital through mind re-orientation and free transfer of skills.</h3>
+            <p class="font-italic">
+              OUR VISION: To be the leading, most impactful and beneficial association in Nigeria
+            </p>
+        </div>
+    </section><!-- End About Section -->
+
+    {% endblock about %}
+
+    {% block skills %}
+
+    {% endblock skills%}
+
+    {% block counter %}
+
+
+    {% endblock counter %}
+
+    {% block clients %}
+
+    {% endblock clients %}
+
+    {% block services %}
+
+    {% endblock services %}
+
+    {% block testimonials %}
+
+    {% endblock testimonials %}
+
+    {% block portfolio %}
+
+    {% endblock portfolio %}
+
+    {% block team %}
+
+
+    {% endblock team%}
+
+    {% block pricing %}
+
+    {% endblock pricing %}
+
+    {% block faq %}
+    {% endblock faq %}
+
+    {% block contact %}
+
+
+    {% endblock contact %}
+
+
+
+  <!-- ======= Footer ======= -->
+
+  <footer id="footer">
+
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center">
+
+          <div class="col-lg-6">
+            {% block footer %}
+            <h4>Join Our Newsletter</h4>
+            <p>To get update from REFAAN, You can subscribe to our Newsletter</p>
+
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+            {% endblock footer %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>REFAAN<span>.</span></h3>
+            <p>
+              55, Iwofe road, opposite first bank,
+              Ada-George Port Harcourt, Rivers State
+              <strong>Phone:</strong> 08133132160<br>
+              <strong>Email:</strong> refaaninfo@gmail.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'home' %}">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'jobs-home' %}">Members Jobs</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Membership</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Disclaimer</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'register' %}">Register</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'login' %}">Login</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#faq">FAQ</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#contact">Newsletter</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#portfolio">Portfolio</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <p>Connect to us on social media to see more of our activities</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-4">
+      <div class="copyright">
+        &copy; Copyright <strong><span>REFAAN </span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bizland-bootstrap-business-template/ -->
+        Designed by <a href="https://fizcos.com/">Fizcos Infotech Solutions</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

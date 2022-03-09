@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block navbar %}
+<nav class="nav-menu d-none d-lg-block">
+               <ul>
+          {% if user.is_authenticated %}
+            <li><i class="fa fa-fw fa-user"></i> Hello! {{ user.username}}</li>
+          <li><a href="{% url 'profile' %}">Dashboard</a></li>
+          <li><a href="{% url 'post-create' %}">Create Job Post</a></li>
+          <li><a href="{% url 'jobs-home' %}">Members Job</a></li>
+           <li class="active"><a href="{% url 'member-list' %}">Members Directory</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+
+          {% else %}
+          <li><a href="{% url 'home' %}">Home</a></li>
+
+          <li><a href="{% url 'jobs-home' %}">Jobs Page</a></li>
+          <li><a href="{% url 'register' %}">Register</a></li>
+          <li class="drop-down"><a href="">Members</a>
+            <ul>
+              <li><a href="{% url 'login' %}">Login</a></li>
+              <li class="drop-down"><a href="#">Members Page</a>
+                <ul>
+                  <li><a href="#">Members Jobs</a></li>
+                  <li class="active"><a href="{% url 'member-list' %}">Members Directory</a></li>
+                </ul>
+              </li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Membership Terms</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Membership Terms</a></li>
+           <li><a href="#">Materials Price</a></li>
+
+          {% endif %}
+
+        </ul>
+
+      </nav><!-- .nav-menu -->
+{% endblock navbar%}
+
+
+{% block hero %}
+
+{% endblock hero %}
+{% block featured %}
+
+{% endblock featured %}
+
+{% block about %}
+
+{% endblock about %}
+
+{% block skills %}
+
+
+{% endblock skills %}
+
+{% block counter %}
+
+{% endblock counter %}
+{% block clients %}
+
+{% endblock clients %}
+
+{% block services %}
+
+    <hr class="pb-4">
+    <div class="container d-flex pt-4  bd-highlight ">
+    <div class="container d-flex pt-4 bd-highlight ">
+    <div class="container d-flex pt-4 bd-highlight ">
+    <div class="container d-flex pt-4 bd-highlight  ">
+
+
+
+          <article class="media content-section">
+              <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" style="width:70px; height:auto;">
+            <div class="media-body">
+              <div class="article metadata">
+                <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
+                <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+                {% if object.author == user %}
+                <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+                </div>
+                {% endif %}
+
+              </div>
+              <h3 class="article-title"> {{ object.title }} - <small style="font-size:13px;"></small></h3>
+              <p class="article-content">{{ object.content|safe }}</p>
+            </div>
+          </article>
+
+
+          </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock services%}
+
+{% block testimonials%}
+
+{% endblock testimonials %}
+
+{% block portfolio %}
+
+{% endblock portfolio %}
+
+{% block team %}
+
+{% endblock team %}
+
+{% block faq %}
+
+{% endblock faq%}
+
+{% block pricing %}
+
+{% endblock pricing %}
+
+{% block contact %}
+
+{% endblock contact %}
+
+{% block footer %}
+How to navigate the members job
+{% endblock footer%}
